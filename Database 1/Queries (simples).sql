@@ -32,4 +32,4 @@ select TITCUR, LOWER(TO_CHAR(FINCUR,'"COMIENZA EL "DAY D "DE" MONTH", "YYYY')) "
 select NOMALU from alumnos where TELALU like '__2%' order by NOMALU;
 
 /* Las cuatro primeras letras del nombre de aquellos alumnos que sean de Leganés */
-select SUBSTR(UPPER(NOMALU), 1, 4) from alumnos where DIRALU like '%LEGANÉS';
+select SUBSTR(UPPER(NOMALU), 1, 4) "INIT" from alumnos where DIRALU like '%LEGANÉS';
