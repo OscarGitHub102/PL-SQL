@@ -142,3 +142,21 @@ select NOMALU from alumnos where TELALU like '__2%' order by NOMALU;
 
 /* Las cuatro primeras letras del nombre de aquellos alumnos que sean de Leganés */
 select SUBSTR(UPPER(NOMALU), 1, 4) "INIT" from alumnos where DIRALU like '%LEGANÉS';
+
+/* Códigos postales sin los dos primeros caracteres */
+select SUBSTR(CPOALU, 3, 5) CP from alumnos group by SUBSTR(CPOALU, 3, 5) order by 1;
+
+/* Número de alumnos en los diferentes códigos postales */
+select CPOALU, COUNT(NOMALU) as "Nº ALUMNOS" from alumnos group by CPOALU order by "Nº ALUMNOS";
+
+/* Número de alumnos en los diferentes dominios de su cuenta de correo electrónico */
+select SUBSTR(EMAALU, INSTR(EMAALU, '@') +1) DOMINIO, COUNT(NUMALU) "Nº ALUMNOS" from alumnos group by SUBSTR(EMAALU, INSTR(EMAALU, '@') +1);
+
+/* Nombre y correo electrónico sin el dominio */
+select NOMALU, SUBSTR(EMAALU, 1, INSTR(EMAALU, '@') -1) "CORREO (SIN DOMINIO)" from alumnos;
+
+/* Apellido de los alumnnos de Getafe */
+select SUBSTR(NOMALU, INSTR(NOMALU, ' ')) APELLIDO from alumnos where DIRALU like '% GETAFE' order by APELLIDO;
+
+/* Nombre y apellidos, y ciudad de los que tienen un correo de hotmail.com */
+select NOMALU, DIRALU, EMAALU from alumnos where EMAALU like '%@HOTMAIL.COM' order by NOMALU;
