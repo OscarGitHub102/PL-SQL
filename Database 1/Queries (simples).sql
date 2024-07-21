@@ -85,7 +85,7 @@ select NOMPRO, CONCAT((SALPRO*1.15), '$') AS "SALARIO" from profesores where NOM
 select NOMPRO, FNAPRO from profesores where ESPPRO = 'SOFTWARE' and SALPRO > 1650 order by NOMPRO;
 
 /* Nombre, fecha de nacimiento y salario anual más comisión de los profesores nacidos en 1991 */
-select NOMPRO, FNAPRO, CONCAT((SALPRO + NVL(COMPRO, 0)) * 12, '€') "SALARIO ANUAL (CON COMISIÓN)" from profesores where EXTRACT(year from FNAPRO) = 1991 order by NOMPRO;
+select NOMPRO, FNAPRO, CONCAT((SALPRO + NVL(COMPRO, 0)) * 12, '€') "SALARIO ANUAL (CON COMISIÓN)" from profesores where EXTRACT(YEAR from FNAPRO) = 1991 order by NOMPRO;
 
 /* Número de profesores con el mismo salario, descartando los que ganan menos de 1500€ */
 select SALPRO, COUNT(SALPRO) "Nº PROFESORES" from profesores where SALPRO >= 1500 group by SALPRO order by SALPRO;
@@ -97,7 +97,7 @@ select JEFPRO, MIN(SALPRO) "SALARIO MÍNIMO" from profesores where JEFPRO IS NOT
 select ESPPRO, MAX(TRUNC((SYSDATE - FNAPRO)/365)) as "EDAD MÁXIMA" from profesores group by ESPPRO order by "EDAD MÁXIMA";
 
 /* Número de profesores que empezaron a trabajar en los diferentes años */
-select EXTRACT(year from FINPRO) AÑO, COUNT(FINPRO) "Nº INGRESOS" from profesores group by EXTRACT(year from FINPRO) order by EXTRACT(year from FINPRO);
+select EXTRACT(YEAR from FINPRO) AÑO, COUNT(FINPRO) "Nº INGRESOS" from profesores group by EXTRACT(YEAR from FINPRO) order by EXTRACT(YEAR from FINPRO);
 
 /************** TABLE CURSOS **************/
 
