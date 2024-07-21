@@ -25,7 +25,7 @@ select TITCUR from cursos where EDICUR >= 2 AND CRECUR > 3;
 select TITCUR from cursos where (FFICUR - FINCUR) < 120;
 
 /* Título del curso, el literal "comienza" y la fecha de inicio del curso con el formato "lunes 6 de junio, 2016" */
-select TITCUR, LOWER(TO_CHAR(FINCUR,'"COMIENZA EL "DAY D "DE" MONTH", "YYYY')) "FECHAS PREVISTAS DE INICIO" from cursos;
+select TITCUR, LOWER(TO_CHAR(FINCUR,'"COMIENZA EL "DAY DD "DE" MONTH", "YYYY')) "FECHAS PREVISTAS DE INICIO" from cursos;
 
 /* TABLE ALUMNOS */
 /* Nombre de los alumnos cuyo tercer dígito de su número de teléfono es 2 por orden alfabético */
