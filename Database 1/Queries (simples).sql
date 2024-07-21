@@ -100,6 +100,7 @@ select ESPPRO, MAX(TRUNC((SYSDATE - FNAPRO)/365)) as "EDAD MÁXIMA" from profeso
 select EXTRACT(year from FINPRO) AÑO, COUNT(FINPRO) "Nº INGRESOS" from profesores group by EXTRACT(year from FINPRO) order by EXTRACT(year from FINPRO);
 
 /************** TABLE CURSOS **************/
+
 /* Título de los cursos que tengan dos o más ediciones y que el número de créditos sea mayor de tres */
 select TITCUR from cursos where EDICUR >= 2 AND CRECUR > 3;
 
@@ -110,6 +111,7 @@ select TITCUR from cursos where (FFICUR - FINCUR) < 120;
 select TITCUR, LOWER(TO_CHAR(FINCUR,'"COMIENZA EL "DAY DD "DE" MONTH", "YYYY')) "FECHAS PREVISTAS DE INICIO" from cursos;
 
 /************** TABLE ALUMNOS **************/
+
 /* Nombre de los alumnos cuyo tercer dígito de su número de teléfono es 2 por orden alfabético */
 select NOMALU from alumnos where TELALU like '__2%' order by NOMALU;
 
