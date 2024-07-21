@@ -110,6 +110,7 @@ select TITCUR from cursos where (FFICUR - FINCUR) < 120;
 /* Título del curso, el literal "comienza" y la fecha de inicio del curso con el formato "lunes 6 de junio, 2016" */
 select TITCUR, LOWER(TO_CHAR(FINCUR,'"COMIENZA EL "DAY DD "DE" MONTH", "YYYY')) "FECHAS PREVISTAS DE INICIO" from cursos;
 
+/* Cursos que tengan un título con menos de cinco caracteres */
 select TITCUR, LENGTH(TITCUR) LONGITUD from cursos where LENGTH(TITCUR) < 5;
 
 /* Total de créditos de cada profesor, excluyendo aquellos cuyo total de créditos sea igual o menor a 4 */
