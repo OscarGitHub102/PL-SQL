@@ -1,4 +1,4 @@
-/************** TABLE PROFESORES **************/
+/****************************** TABLE PROFESORES ******************************/
 
 /* Nombre y salario de los empleados cuya especialidad es Web */
 select NOMPRO, SALPRO from profesores where ESPPRO = 'WEB';
@@ -99,7 +99,7 @@ select ESPPRO, MAX(TRUNC((SYSDATE - FNAPRO)/365)) as "EDAD MÁXIMA" from profeso
 /* Número de profesores que empezaron a trabajar en los diferentes años */
 select EXTRACT(YEAR from FINPRO) AÑO, COUNT(FINPRO) "Nº INGRESOS" from profesores group by EXTRACT(YEAR from FINPRO) order by EXTRACT(YEAR from FINPRO);
 
-/************** TABLE CURSOS **************/
+/****************************** TABLE CURSOS ******************************/
 
 /* Título de los cursos que tengan dos o más ediciones y que el número de créditos sea mayor de tres */
 select TITCUR from cursos where EDICUR >= 2 AND CRECUR > 3;
@@ -110,7 +110,31 @@ select TITCUR from cursos where (FFICUR - FINCUR) < 120;
 /* Título del curso, el literal "comienza" y la fecha de inicio del curso con el formato "lunes 6 de junio, 2016" */
 select TITCUR, LOWER(TO_CHAR(FINCUR,'"COMIENZA EL "DAY DD "DE" MONTH", "YYYY')) "FECHAS PREVISTAS DE INICIO" from cursos;
 
-/************** TABLE ALUMNOS **************/
+select TITCUR, LENGTH(TITCUR) LONGITUD from cursos where LENGTH(TITCUR) < 5;
+
+/* Total de créditos de cada profesor, excluyendo aquellos cuyo total de créditos sea igual o menor a 4 */
+select NUMPRO, SUM(CRECUR) CRÉDITOS from cursos group by NUMPRO having SUM(CRECUR) > 4 order by NUMPRO;
+
+/* Valor total de los cursos por el número de créditos de aquellos cuya edición es la primera */
+select SUM(PRECUR)*SUM(CRECUR) VALOR from cursos where EDICUR = 1;
+
+/* Título del curso y la fecha correspondiente a lunes después de la fecha de inicio de los cursos */
+select TITCUR, FINCUR, NEXT_DAY(FINCUR, 'LUNES') as "LUNES" from cursos order by "LUNES";
+
+/* Posponer 1 mes la fecha de finalización de las aulas con cursos de Web */
+select FFICUR, ADD_MONTHS(FFICUR, 1) MES from cursos where NUMPRO in (101, 105, 109, 110);
+
+/* Número de cursos que imparte cada profesor */
+select NUMPRO, COUNT(NUMCUR) "Nº CURSOS" from cursos group by NUMPRO order by NUMPRO;
+
+/* Número de cursos que empiezan en los diferentes años */
+select EXTRACT(YEAR from FINCUR) as "AÑO", COUNT(EXTRACT(YEAR from FINCUR)) "Nº CURSOS" from cursos group by EXTRACT(YEAR from FINCUR) order by "AÑO";
+select TO_CHAR(FINCUR, 'YYYY') as "AÑO", COUNT(TO_CHAR(FINCUR, 'YYYY')) "Nº CURSOS" from cursos group by TO_CHAR(FINCUR, 'YYYY') order by 1;
+
+/* Media de los precios de los cursos por edición, excluyendo aquellos cuya media sea superior a 800€ */
+select EDICUR, TRUNC(AVG(PRECUR), 2) "MEDIA PRECIO" from cursos group by EDICUR having AVG(PRECUR) < 800;
+
+/****************************** TABLE ALUMNOS ******************************/
 
 /* Nombre de los alumnos cuyo tercer dígito de su número de teléfono es 2 por orden alfabético */
 select NOMALU from alumnos where TELALU like '__2%' order by NOMALU;
