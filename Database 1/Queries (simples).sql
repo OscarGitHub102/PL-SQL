@@ -36,20 +36,14 @@ select NOMPRO, TRUNC(((SYSDATE - FINPRO)/365)/3) TRIENIOS from profesores order 
 /* Nombre de los profesores y la suma del salario más comisión. Si la comisión es nula se convertirá a cero */
 select NOMPRO, SALPRO + NVL(COMPRO, 0) "SALARIO + COMISIÓN" from profesores order by NOMPRO;
 
-/* Nombre de los profesores y la suma del salario más comisión. Si la comisión es nula se convertirá a cero */
-select NOMPRO, SALPRO + NVL(COMPRO, 0) "SALARIO + COMISIÓN" from profesores order by NOMPRO;
-
 /* Nombre y edad con la que empezaron a trabajar (sin decimales) */
 select NOMPRO, TRUNC((FINPRO - FNAPRO)/365) as "EDAD INGRESO" from profesores order by "EDAD INGRESO";
 
-/* Nombre de los profesores que hayan ingresado después de 28/02/17 V1*/
+/* Nombre de los profesores que hayan ingresado después de 28/02/17 */
 select SUBSTR(NOMPRO, 1, INSTR(NOMPRO, ' ')) NOMBRE from profesores where FINPRO > '28/02/17' order by NOMPRO;
 
-/* Apellido de los profesores que hayan ingresado después de 28/02/17 V2*/
+/* Apellido de los profesores que hayan ingresado después de 28/02/17 */
 select SUBSTR(NOMPRO, INSTR(NOMPRO, ' ') + 1) APELLIDO from profesores where FINPRO > '28/02/17' order by NOMPRO;
-
-/* Nombre y edad de los profesores (sin decimales) que tenían cuando ingresaron en la empresa, ordenado por edad */
-select NOMPRO, TRUNC((FINPRO - FNAPRO)/365) as "EDAD INGRESO" from profesores order by "EDAD INGRESO";
 
 /* Nombre, especialidad y salario de los profesores cuya especilidad sea REDES y SOFTWARE y su salario no sea igual a 1450 o 1700 € */
 select NOMPRO, ESPPRO, SALPRO from profesores where (ESPPRO = 'REDES' or ESPPRO = 'SOFTWARE') and SALPRO not in (1450, 1700);
@@ -71,9 +65,6 @@ select NOMPRO, FINPRO, TO_CHAR(NEXT_DAY(ADD_MONTHS(FINPRO, 9), 'LUNES'), 'DAY DD
 
 /* Primera letra en mayúscula y el resto en minúsculas del nombre de los profesores y la longitud de sus nombres, para los profesores cuyos nombres empiecen por E, A o I */
 select INITCAP(NOMPRO) NOMBRE, LENGTH(NOMPRO) "LONGITUD NOMBRE" from profesores where NOMPRO like 'E%' or NOMPRO like 'A%' or NOMPRO like 'I%' order by NOMPRO;
-
-/* Nombre de los profesores cuyo apellido empieza por "G" */
-select NOMPRO from profesores where NOMPRO like '% G%' order by NOMPRO desc;
 
 /* Nombre y tiempo (ordenado por antigüedad de mayor a menor) que llevan los profesores en la empresa expresado en años, meses y días */
 select NOMPRO, TRUNC((SYSDATE-FINPRO) /365) as "AÑOS", TRUNC((((SYSDATE-FINPRO) /365)-TRUNC((SYSDATE-FINPRO) /365))*12) as "MESES", TRUNC(((((SYSDATE-FINPRO)/365)-TRUNC((SYSDATE-FINPRO)/365)))*30) as "DÍAS" from profesores order by "AÑOS" desc, "MESES" desc, "DÍAS" desc; 
