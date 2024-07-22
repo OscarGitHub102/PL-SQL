@@ -10,7 +10,7 @@ select NOMPRO, SALPRO from profesores where SALPRO > 1500;
 select NOMPRO from profesores where FNAPRO like '%92';
 
 /* Nombre de los profesores que ganan más de 1500€ y cuyo oficio es Redes y Software */
-select NOMPRO from profesores where (SALPRO > 1500) AND (ESPPRO LIKE 'REDES' OR ESPPRO LIKE 'SOFTWARE');
+select NOMPRO from profesores where (SALPRO > 1500) and (ESPPRO LIKE 'REDES' or ESPPRO LIKE 'SOFTWARE');
 
 /* Nombre de los profesores que tienen una "u" en la segunda letra de su nombre */
 select NOMPRO from profesores where NOMPRO like '_U%';
