@@ -82,7 +82,7 @@ select NOMPRO, FNAPRO, CONCAT((SALPRO + NVL(COMPRO, 0)) * 12, '€') "SALARIO AN
 select SALPRO, COUNT(SALPRO) "Nº PROFESORES" from profesores where SALPRO >= 1500 group by SALPRO order by SALPRO;
 
 /* Número y salario de los profesores con menor salario que dependen de cada jefe. Excluyendo a aquellos cuyo jefe no se identifique y cuyo mínimo salario sea inferior a 1700€ */
-select JEFPRO, MIN(SALPRO) "SALARIO MÍNIMO" from profesores where JEFPRO IS NOT NULL group by JEFPRO having MIN(SALPRO) < 1700 order by JEFPRO;
+select JEFPRO, MIN(SALPRO) "SALARIO MÍNIMO" from profesores where JEFPRO is not null group by JEFPRO having MIN(SALPRO) < 1700 order by JEFPRO;
 
 /* Edad máxima en años cumplidos de cada especialidad */
 select ESPPRO, MAX(TRUNC((SYSDATE - FNAPRO)/365)) as "EDAD MÁXIMA" from profesores group by ESPPRO order by "EDAD MÁXIMA";
