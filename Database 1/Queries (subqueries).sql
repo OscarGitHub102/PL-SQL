@@ -1,5 +1,6 @@
 /* Visualizar el título del libro, el nombre del profesor y el salario de cualquier profesor cuyo salario y comisión coincidan las dos con el salario y comisión de cualquier profesor de especialidad ‘Redes’ */
-select C.TITCUR, P.NOMPRO, P.SALPRO from profesores P, cursos C where P.NUMPRO = C.NUMPRO and (P.SALPRO, NVL(P.COMPRO, 0)) in (select SALPRO, NVL(COMPRO,0) from profesores where ESPPRO like 'REDES');
+select C.TITCUR, P.NOMPRO, P.SALPRO from profesores P, cursos C where P.NUMPRO = C.NUMPRO and (P.SALPRO, NVL(P.COMPRO, 0)) in
+  (select SALPRO, NVL(COMPRO,0) from profesores where ESPPRO like 'REDES');
 
 /* Crear una consulta para visualizar el nombre, la fecha de alta y el salario de todos los profesores que tengan el mismo salario más la comisión que Pilar Gómez excluyendo a esta */
 select NOMPRO,FINPRO, SALPRO from profesores where SALPRO = (select SALPRO + NVL(COMPRO, 0) from profesores where NOMPRO like 'PILAR GÓMEZ') and NOMPRO != 'PILAR GÓMEZ';
