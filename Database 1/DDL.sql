@@ -19,7 +19,7 @@ DROP TABLE CURSOS4;
 /* Crear una tabla llamada PRUEBA que contenga la especialidad del profesor de dimensión VARCHAR2(25) y el salario medio por especialidad de dimensión NUMBER(7, 2) */
 CREATE TABLE PRUEBA(ESPPRO VARCHAR(25), SALMED NUMBER(7, 2));
 
-/* Escribir una restricción Primary Key al campo especialida del profesor de la tabla PRUEBA */
+/* Escribir una restricción Primary Key al campo especialidad del profesor de la tabla PRUEBA */
 ALTER TABLE PRUEBA ADD PRIMARY KEY (ESPPRO);
 
 /* Cargar en la tabla PRUEBA los registros basándose en PROFESORES */
