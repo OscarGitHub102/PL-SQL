@@ -4,10 +4,10 @@ DECLARE
     V_TOTAL NUMBER;
 BEGIN
     SELECT SUM(SALPRO) INTO V_TOTAL FROM PROFESORES;
-    DBMS_OUTPUT.PUT_LINE(chr(10) || 'SUMA DE SALARIOS: ' || V_TOTAL || '€');
+    DBMS_OUTPUT.PUT_LINE(chr(10) || 'SUMA DE SALARIOS: ' || V_TOTAL || 'â‚¬');
 END;
 
-/* Visualizar el nombre del profesor y su salario de la tabla PROFESORES de número de profesor 106 */
+/* Visualizar el nombre del profesor y su salario de la tabla PROFESORES de nÃºmero de profesor 106 */
 SET SERVEROUTPUT ON
 DECLARE
     V_NOMPRO VARCHAR2(15);
@@ -15,20 +15,20 @@ DECLARE
 BEGIN
     SELECT NOMPRO, SALPRO INTO V_NOMPRO, V_SALPRO FROM PROFESORES WHERE NUMPRO = 106;
     DBMS_OUTPUT.PUT_LINE(chr(10) || 'NOMBRE: ' || V_NOMPRO);
-    DBMS_OUTPUT.PUT_LINE('SALARIO: ' || V_SALPRO || '€');
+    DBMS_OUTPUT.PUT_LINE('SALARIO: ' || V_SALPRO || 'â‚¬');
 END;
 
-/* Bloque PL que obtenga el nombre y el salario del profesor de código 109 */
+/* Bloque PL que obtenga el nombre y el salario del profesor de cÃ³digo 109 */
 SET SERVEROUTPUT ON
 DECLARE
     NOMBRE PROFESORES.NOMPRO%TYPE;
     SALARIO PROFESORES.SALPRO%TYPE;
 BEGIN
     SELECT SALPRO, NOMPRO INTO SALARIO, NOMBRE FROM PROFESORES WHERE NUMPRO = 109;
-    DBMS_OUTPUT.PUT_LINE(chr(10) || NOMBRE || ' **** ' || SALARIO || '€');
+    DBMS_OUTPUT.PUT_LINE(chr(10) || NOMBRE || ' **** ' || SALARIO || 'â‚¬');
 END;
 
-/* Insertar en la tabla PROFESORES un nuevo profesor de código 111 a través de un bloque PL con los siguientes datos ('Olvido Pino', '14/07/97', 105, '31/08/16', 1100, NULL, 'Web') */
+/* Insertar en la tabla PROFESORES un nuevo profesor de cÃ³digo 111 a travÃ©s de un bloque PL con los siguientes datos ('Olvido Pino', '14/07/97', 105, '31/08/16', 1100, NULL, 'Web') */
 SET SERVEROUTPUT ON
 DECLARE
     CODEMPLEADO PROFESORES.NUMPRO%TYPE := 111;
@@ -36,7 +36,7 @@ BEGIN
     INSERT INTO PROFESORES VALUES (CODEMPLEADO, 'OLVIDO PINO', '14/07/97', 105, '31/08/16', 1100, NULL, 'WEB');
 END;
 
-/* Suprimir el profesor de código 111 */
+/* Suprimir el profesor de cÃ³digo 111 */
 SET SERVEROUTPUT ON
 DECLARE
     V_NUMPRO PROFESORES.NUMPRO%TYPE := 111;
@@ -44,7 +44,7 @@ BEGIN
     DELETE FROM PROFESORES WHERE NUMPRO = V_NUMPRO;
 END;
 
-/* Borrar de la tabla CURSOS aquellos que sean más de 50 horas, utilizando el cursos ROWCOUNT */
+/* Borrar de la tabla CURSOS aquellos que sean mÃ¡s de 50 horas, utilizando el cursos ROWCOUNT */
 SET SERVEROUTPUT ON
 DECLARE
     V_ELIMI CURSOS.HORCUR%TYPE := 60;
@@ -61,14 +61,14 @@ BEGIN
     UPDATE PROFFESORES SET SALPRO = SALPRO + SALPRO * AUMENTO WHERE ESPPRO LIKE '%HARDWARE%';
 END;
 
-/* Bloque PL sobre la tabla PROFESORES que, introduciendo el número del profesor, muestre el nombre y el salario de este, para posteriormente ser actualizado y mostrado, teniendo en cuenta que, si el sueldo es mayor de 1500€, se incrementará en un 15% y, si es menor, en un 25% */
+/* Bloque PL sobre la tabla PROFESORES que, introduciendo el nÃºmero del profesor, muestre el nombre y el salario de este, para posteriormente ser actualizado y mostrado, teniendo en cuenta que, si el sueldo es mayor de 1500â‚¬, se incrementarÃ¡ en un 15% y, si es menor, en un 25% */
 SET SERVEROUTPUT ON
 DECLARE
     N PROFESORES.NUMPRO%TYPE;
     NOMBRE PROFESORES.NOMPRO%TYPE;
     SALARIO PROFESORES.SALPRO%TYPE;
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('INTRODUZCA EL NÚMERO DEL PROFESOR');
+    DBMS_OUTPUT.PUT_LINE('INTRODUZCA EL NÃšMERO DEL PROFESOR');
     N:=&NUMERO;
     SELECT NOMPRO, SALPRO INTO NOMBRE, SALARIO FROM PROFESORES WHERE NUMPRO = N;
     DBMS_OUTPUT.PUT_LINE(NOMBRE ||' '|| SALARIO);
