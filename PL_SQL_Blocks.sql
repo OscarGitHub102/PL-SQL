@@ -22,14 +22,14 @@ BEGIN
     ELSIF N < 10 THEN
     DBMS_OUTPUT.PUT_LINE( N ||' SOBRESALIENTE');
     ELSIF N = 10 THEN
-    DBMS_OUTPUT.PUT_LINE( N ||' MATRÍCULA');
+    DBMS_OUTPUT.PUT_LINE( N ||' MATRÃCULA');
     ELSE
-    DBMS_OUTPUT.PUT_LINE( N ||' NOTA INVÁLIDA');
+    DBMS_OUTPUT.PUT_LINE( N ||' NOTA INVÃLIDA');
     END IF;
     DBMS_OUTPDBMS_OUTPUT.PUT_LINE('FIN DE PROGRAMA');
 END;
 
-/* Programa que recibe un número y visualiza los números iguales o inferiores a él (WHILE) */
+/* Programa que recibe un nÃºmero y visualiza los nÃºmeros iguales o inferiores a Ã©l (WHILE) */
 SET SERVEROUTPUT ON
 DECLARE
     N NUMBER (3);
@@ -43,7 +43,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('');
 END;
 
-/* Programa que recibe un número y visualiza los números iguales o inferiores a él (LOOP) */
+/* Programa que recibe un nÃºmero y visualiza los nÃºmeros iguales o inferiores a Ã©l (LOOP) */
 SET SERVEROUTPUT ON
 DECLARE
     N NUMBER (3);
@@ -58,7 +58,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('');
 END;
 
-/* Programa que recibe un número y visualiza los números iguales o inferiores a él (FOR) */
+/* Programa que recibe un nÃºmero y visualiza los nÃºmeros iguales o inferiores a Ã©l (FOR) */
 SET SERVEROUTPUT ON
 DECLARE
     N NUMBER (3);
@@ -71,24 +71,24 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('');
 END;
 
-/* Programa que devuelve el número de cifras que tiene un número que se pasa por teclado mediante una variable de sustitución */
+/* Programa que devuelve el nÃºmero de cifras que tiene un nÃºmero que se pasa por teclado mediante una variable de sustituciÃ³n */
 SET SERVEROUTPUT ON
 DECLARE
     NUMERO NUMBER;
     CONT NUMBER;
 BEGIN
     NUMERO := &NUMERO;
-    DBMS_OUTPUT.PUT_LINE(chr(10) || 'EL NÚMERO DE CIFRAS DEL NÚMERO ES: ' || LENGTH(NUMERO));
+    DBMS_OUTPUT.PUT_LINE(chr(10) || 'EL NÃšMERO DE CIFRAS DEL NÃšMERO ES: ' || LENGTH(NUMERO));
 END;
 
-/* Bloque PL que devuelve el número de cifras que tiene un número que se pasa por teclado mediante una variable de sustitución sin utilizar la función LENGTH */
+/* Bloque PL que devuelve el nÃºmero de cifras que tiene un nÃºmero que se pasa por teclado mediante una variable de sustituciÃ³n sin utilizar la funciÃ³n LENGTH */
 DECLARE
     ENTERO NUMBER;
     CIFRAS NUMBER;
 BEGIN
     CIFRAS := 1;
     ENTERO := &VALOR;
-    DBMS_OUTPUT.PUT(chr(10) || 'EL NÚMERO '|| ENTERO ||' TIENE ');
+    DBMS_OUTPUT.PUT(chr(10) || 'EL NÃšMERO '|| ENTERO ||' TIENE ');
     WHILE ENTERO > 9 LOOP
         ENTERO := FLOOR(ENTERO/10);
         CIFRAS := CIFRAS+1;
@@ -96,7 +96,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE(CIFRAS ||' CIFRAS');
 END;
 
-/* Crear una tabla llamada TANGULOS con tres columnas: ángulo, seno, coseno. Rellenarla mediante un bloque PL de todos los ángulos comprendidos entre 0 y 90, en intervalos de diez en diez */
+/* Crear una tabla llamada TANGULOS con tres columnas: Ã¡ngulo, seno, coseno. Rellenarla mediante un bloque PL de todos los Ã¡ngulos comprendidos entre 0 y 90, en intervalos de diez en diez */
 CREATE TABLE TANGULOS
 (
     ANGULO NUMBER(2),
@@ -123,7 +123,7 @@ BEGIN
     END LOOP;
 END;
 
-/* Dada una cadena introducida por teclado, obtiene como salida la cadena al revés */
+/* Dada una cadena introducida por teclado, obtiene como salida la cadena al revÃ©s */
 SET SERVEROUTPUT ON
 DECLARE
     R_CADENA VARCHAR2(20);
@@ -136,10 +136,10 @@ BEGIN
         R_CADENA:=R_CADENA||SUBSTR(CADENA, I, 1);
         I := I-1;
     END LOOP;
-    DBMS_OUTPUT.PUT_LINE(chr(10) || CADENA || ' AL REVÉS ES ' || R_CADENA);
+    DBMS_OUTPUT.PUT_LINE(chr(10) || CADENA || ' AL REVÃ‰S ES ' || R_CADENA);
 END;
 
-/* Introducir un año por teclado, y decir si es bisiesto o no */
+/* Introducir un aÃ±o por teclado, y decir si es bisiesto o no */
 SET SERVEROUTPUT ON
 DECLARE
     ANIO INTEGER;
@@ -160,7 +160,7 @@ BEGIN
     END IF;
 END;
 
-/* Programa que diga si un número introducido por teclado es capicúa o no y además cuente sus cifras */
+/* Programa que diga si un nÃºmero introducido por teclado es capicÃºa o no y ademÃ¡s cuente sus cifras */
 SET SERVEROUTPUT ON
 DECLARE
     N INTEGER;
@@ -181,13 +181,13 @@ BEGIN
     END LOOP;
     DBMS_OUTPUT.PUT_LINE(chr(10) || COPIA ||' TIENE '|| CIFRAS ||' CIFRAS');
     IF INVERSO = COPIA THEN
-    DBMS_OUTPUT.PUT_LINE(COPIA ||' ES CAPICÚA');
+    DBMS_OUTPUT.PUT_LINE(COPIA ||' ES CAPICÃšA');
     ELSE
-    DBMS_OUTPUT.PUT_LINE(COPIA ||' NO ES CAPICÚA');
+    DBMS_OUTPUT.PUT_LINE(COPIA ||' NO ES CAPICÃšA');
     END IF;
 END;
 
-/* Programa que calcule el factorial de un número introducido por teclado */
+/* Programa que calcule el factorial de un nÃºmero introducido por teclado */
 SET SERVEROUTPUT ON
 DECLARE
     N NUMBER;
