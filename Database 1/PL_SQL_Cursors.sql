@@ -15,7 +15,7 @@ BEGIN
     CLOSE C_PROF;
 END;
 
-/* Mediante cursores paramÈtricos, mostrar de la tabla CURSOS, los tÌtulos de los cursos y su precio que han sido impartidos por el profesor que se introduzca por teclado */
+/* Mediante cursores param√©tricos, mostrar de la tabla CURSOS, los t√≠tulos de los cursos y su precio que han sido impartidos por el profesor que se introduzca por teclado */
 SET SERVEROUTPUT ON
 DECLARE
     COD CURSOS.NUMPRO%TYPE;
@@ -31,12 +31,12 @@ BEGIN
     LOOP
         FETCH C1 INTO V_TITCUR, V_PRECUR;
         EXIT WHEN C1%NOTFOUND;
-        DBMS_OUTPUT.PUT_LINE('EL CURSO "' || V_TITCUR || '" CON PRECIO: ' || V_PRECUR || 'Ä');
+        DBMS_OUTPUT.PUT_LINE('EL CURSO "' || V_TITCUR || '" CON PRECIO: ' || V_PRECUR || '‚Ç¨');
     END LOOP;
     CLOSE C1;
 END;
 
-/* Crear una tabla llamada PROFESORES2 que sea copia de PROFESORES. Crear un programa PL que permita borrar a los profesores de la tabla PROFESORES2 que no tienen comisiÛn y los que tienen se dividir· entre dos */
+/* Crear una tabla llamada PROFESORES2 que sea copia de PROFESORES. Crear un programa PL que permita borrar a los profesores de la tabla PROFESORES2 que no tienen comisi√≥n y los que tienen se dividir√° entre dos */
 CREATE TABLE PROFESORES2 AS SELECT * FROM PROFESORES;
 DECLARE
     CURSOR C IS
@@ -75,7 +75,7 @@ BEGIN
     CLOSE C1;
 END;
 
-/* Bloque PL que, recibiendo una cadena, muestre los nombres de los profesores y los nombres de los cursps de aquellos profesores que lleven esa cadena en su nombre */
+/* Bloque PL que, recibiendo una cadena, muestre los nombres de los profesores y los nombres de los cursos de aquellos profesores que lleven esa cadena en su nombre */
 SET SERVEROUTPUT ON
 DECLARE
     V_NOMBRE PROFESORES.NOMPRO%TYPE;
@@ -92,7 +92,7 @@ BEGIN
     CLOSE C1;
 END;
 
-/* Bloque PL que muestre el profesor que m·s gana por especialidad */
+/* Bloque PL que muestre el profesor que m√°s gana por especialidad */
 SET SERVEROUTPUT ON
 DECLARE
     CURSOR C_PROF IS
@@ -114,7 +114,7 @@ BEGIN
     CLOSE C_PROF;
 END;
 
-/* Bloque PL que, introduciendo primero el n˙mero de alumnos que se desean visualizar, y depuÈs el cÛdigo de un curso, muestre el nombre del curso y el nombre, correo y nota de los alumnos que est·n matriculados, siempre que tengan el curso aprobado */
+/* Bloque PL que, introduciendo primero el n√∫mero de alumnos que se desean visualizar, y despu√©s el c√≥digo de un curso, muestre el nombre del curso y el nombre, correo y nota de los alumnos que est√°n matriculados, siempre que tengan el curso aprobado */
 SET SERVEROUTPUT ON
 DECLARE
     CURSOR C1 (CODIGO MATRICULADO.NUMCUR%TYPE) IS
@@ -132,7 +132,7 @@ BEGIN
     CLOSE C1;
 END;
 
-/* Visualizar por especialidad de la tabla PROFESORES el nombre de la especialidad y la media de los salarios m·s la comisiÛn (si es nula se pone a cero). Sin utilizar funciones de grupo */
+/* Visualizar por especialidad de la tabla PROFESORES el nombre de la especialidad y la media de los salarios m√°s la comisi√≥n (si es nula se pone a cero). Sin utilizar funciones de grupo */
 DECLARE
     V_ESPPRO PROFESORES.ESPPRO%TYPE;
     CONTADOR NUMBER;
@@ -154,13 +154,13 @@ BEGIN
             FETCH C INTO V_ESPPRO, V_SALTOT;
         END LOOP;
         V_MEDIA := TRUNC((V_MEDIA / CONTADOR), 2);
-        DBMS_OUTPUT.PUT_LINE ('LA ESPECIALIDAD ' || V_SIGUIENTE || ' TIENE UNA MEDIA DE SALARIOS DE ' || V_MEDIA || 'Ä');
+        DBMS_OUTPUT.PUT_LINE ('LA ESPECIALIDAD ' || V_SIGUIENTE || ' TIENE UNA MEDIA DE SALARIOS DE ' || V_MEDIA || '‚Ç¨');
         V_SIGUIENTE := V_ESPPRO;
         END LOOP;
     CLOSE C;
 END;
 
-/* Programa que visualice el curso m·s barato por profesor que lo imparte */
+/* Programa que visualice el curso m√°s barato por profesor que lo imparte */
 SET SERVEROUTPUT ON
 DECLARE 
     CURSOR C1 IS
@@ -184,7 +184,7 @@ BEGIN
                 CUR := CURSO;
             END IF;
         ELSE
-            DBMS_OUTPUT.PUT_LINE('EL CURSO M¡S BARATO DEL PROFESOR ' || NOM || ' ES ' || CUR || ' CON ' || PREC || 'Ä');             
+            DBMS_OUTPUT.PUT_LINE('EL CURSO M√ÅS BARATO DEL PROFESOR ' || NOM || ' ES ' || CUR || ' CON ' || PREC || '‚Ç¨');             
             NOM := NOMBRE;
             PREC := PRECIO;
             CUR := CURSO;
