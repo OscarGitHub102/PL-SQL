@@ -44,7 +44,7 @@ BEGIN
     DELETE FROM PROFESORES WHERE NUMPRO = V_NUMPRO;
 END;
 
-/* Borrar de la tabla CURSOS aquellos que sean más de 50 horas, utilizando el cursos ROWCOUNT */
+/* Borrar de la tabla CURSOS aquellos que sean más de 50 horas, utilizando el cursor ROWCOUNT */
 SET SERVEROUTPUT ON
 DECLARE
     V_ELIMI CURSOS.HORCUR%TYPE := 60;
