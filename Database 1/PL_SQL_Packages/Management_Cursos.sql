@@ -1,13 +1,13 @@
 /* Crear un paquete con los siguientes subprogramas:
-    1. Insertar un nuevo curso, introduciendo los atributos de la tabla. Controlar como excepciÛn si se repitiera el n˙mero del curso
-    2. Modificar la fecha de inicio, introduciendo el n˙mero del curso y la nueva fecha de inicio como par·metros de entrada
-    3. Modificar la fecha final, introduciendo el n˙mero del curso y la nueva fecha de finalizaciÛn como par·metros de entrada
-    4. Aumentar precio un 10% de los cursos que imparte un profesor, introduciendo el nombre del profesor como par·metro de entrada.
-    5. Visualizar los datos del curso, introduciendo el n˙mero del curso como par·metro de entrada
-    6. Visualizar los datos del curso, introduciendo el nombre del curso como par·metro de entrada
-    7. Visualizar los cursos que tienen m·s crÈditos
-    8. Borrar un curso, introduciendo el n˙mero del curso como par·metro de entrada. Controlar como excepciÛn si no existiera el curso
-    9. (FUNCI”N INTERNA) Buscar un curso por el nombre, introduciendo el nombre del curso como par·metro de entrada */
+    1. Insertar un nuevo curso, introduciendo los atributos de la tabla. Controlar como excepci√≥n si se repitiera el n√∫mero del curso
+    2. Modificar la fecha de inicio, introduciendo el n√∫mero del curso y la nueva fecha de inicio como par√°metros de entrada
+    3. Modificar la fecha final, introduciendo el n√∫mero del curso y la nueva fecha de finalizaci√≥n como par√°metros de entrada
+    4. Aumentar precio un 10% de los cursos que imparte un profesor, introduciendo el nombre del profesor como par√°metro de entrada.
+    5. Visualizar los datos del curso, introduciendo el n√∫mero del curso como par√°metro de entrada
+    6. Visualizar los datos del curso, introduciendo el nombre del curso como par√°metro de entrada
+    7. Visualizar los cursos que tienen m√°s cr√©ditos
+    8. Borrar un curso, introduciendo el n√∫mero del curso como par√°metro de entrada. Controlar como excepci√≥n si no existiera el curso
+    9. (FUNCI√ìN INTERNA) Buscar un curso por el nombre, introduciendo el nombre del curso como par√°metro de entrada */
     
 CREATE OR REPLACE PACKAGE GESTION_CURSO AS
     
@@ -27,7 +27,7 @@ CREATE OR REPLACE PACKAGE GESTION_CURSO AS
     PROCEDURE VISUALIZAR_DATOS_CURSO(V_NUM_CURSO CURSOS.NUMCUR%TYPE);
     PROCEDURE VISUALIZAR_DATOS_CURSO_V2(V_TITULO_CURSO CURSOS.TITCUR%TYPE);
     PROCEDURE MAX_CREDITOS_CURSO;
-    PROCEDURE BORRAR_CURSO(V_NUM_CURSO CURSOS.NUMCUR%TYPE);
+    PROCEDURE BORRAR_CURSO(V_TITULO_CURSO CURSOS.NUMCUR%TYPE);
     
 END GESTION_CURSO;
 /
@@ -53,10 +53,10 @@ CREATE OR REPLACE PACKAGE BODY GESTION_CURSO AS
     IS
     BEGIN
         INSERT INTO CURSOS VALUES(V_NUMCUR, V_TITCUR, V_PRECUR, V_EDICUR, V_HORCUR, V_FINCUR, V_FFICUR, V_CRECUR, V_NUMPRO);
-        DBMS_OUTPUT.PUT_LINE(chr(10) || 'SE HA INSERTADO EL CURSO ' || V_NUMCUR || ' DE TÕTULO ' || V_TITCUR);
+        DBMS_OUTPUT.PUT_LINE(chr(10) || 'SE HA INSERTADO EL CURSO ' || V_NUMCUR || ' DE T√çTULO ' || V_TITCUR);
         EXCEPTION
             WHEN DUP_VAL_ON_INDEX THEN
-                DBMS_OUTPUT.PUT_LINE(chr(10) || 'ERROR. N⁄MERO DE CURSO DUPLICADO');
+                DBMS_OUTPUT.PUT_LINE(chr(10) || 'ERROR. N√öMERO DE CURSO DUPLICADO');
     END INSERTAR_CURSO;
 
 ------------
@@ -100,9 +100,9 @@ CREATE OR REPLACE PACKAGE BODY GESTION_CURSO AS
             FETCH C1 INTO REG;   
         END LOOP;
         IF C1%ROWCOUNT > 0 THEN
-            DBMS_OUTPUT.PUT_LINE(chr(10) || 'EL PRECIO DE LOS CURSOS IMPARTIDOS POR EL PROFESOR DE C”DIGO ' || V_NUM_PROF || ' SE HAN INCREMENTADO CORRECTAMENTE');        
+            DBMS_OUTPUT.PUT_LINE(chr(10) || 'EL PRECIO DE LOS CURSOS IMPARTIDOS POR EL PROFESOR DE C√ìDIGO ' || V_NUM_PROF || ' SE HAN INCREMENTADO CORRECTAMENTE');        
         ELSE
-            DBMS_OUTPUT.PUT_LINE(chr(10) || 'NO SE ENCONTRARON CURSOS IMPARTIDOS POR EL PROFESOR DE C”DIGO ' || V_NUM_PROF);
+            DBMS_OUTPUT.PUT_LINE(chr(10) || 'NO SE ENCONTRARON CURSOS IMPARTIDOS POR EL PROFESOR DE C√ìDIGO ' || V_NUM_PROF);
         END IF;
         CLOSE C1;
     END AUMENTAR_PRECIO_CURSO;
@@ -114,18 +114,18 @@ CREATE OR REPLACE PACKAGE BODY GESTION_CURSO AS
         REG_CURSO CURSOS%ROWTYPE;
     BEGIN
         SELECT * INTO REG_CURSO FROM CURSOS WHERE NUMCUR = V_NUM_CURSO;
-        DBMS_OUTPUT.PUT_LINE(chr(10) || 'N⁄MERO: ' || REG_CURSO.NUMCUR);
-        DBMS_OUTPUT.PUT_LINE('TÕTULO: ' || REG_CURSO.TITCUR);
+        DBMS_OUTPUT.PUT_LINE(chr(10) || 'N√öMERO: ' || REG_CURSO.NUMCUR);
+        DBMS_OUTPUT.PUT_LINE('T√çTULO: ' || REG_CURSO.TITCUR);
         DBMS_OUTPUT.PUT_LINE('PRECIO: ' || REG_CURSO.PRECUR);
-        DBMS_OUTPUT.PUT_LINE('EDICI”N: ' || REG_CURSO.EDICUR);
+        DBMS_OUTPUT.PUT_LINE('EDICI√ìN: ' || REG_CURSO.EDICUR);
         DBMS_OUTPUT.PUT_LINE('HORAS: ' || REG_CURSO.HORCUR);
         DBMS_OUTPUT.PUT_LINE('FECHA DE INICIO: ' || REG_CURSO.FINCUR);
         DBMS_OUTPUT.PUT_LINE('FECHA DE FINAL: ' || REG_CURSO.FFICUR);
-        DBMS_OUTPUT.PUT_LINE('CR…DITOS: ' || REG_CURSO.CRECUR);
-        DBMS_OUTPUT.PUT_LINE('N⁄MERO PROFESOR: ' || REG_CURSO.NUMPRO);
+        DBMS_OUTPUT.PUT_LINE('CR√âDITOS: ' || REG_CURSO.CRECUR);
+        DBMS_OUTPUT.PUT_LINE('N√öMERO PROFESOR: ' || REG_CURSO.NUMPRO);
         EXCEPTION
             WHEN NO_DATA_FOUND THEN
-                DBMS_OUTPUT.PUT_LINE(chr(10) || 'NO SE ENCONTR” EL CURSO CON EL N⁄MERO ' || V_NUM_CURSO);    
+                DBMS_OUTPUT.PUT_LINE(chr(10) || 'NO SE ENCONTR√ì EL CURSO CON EL N√öMERO ' || V_NUM_CURSO);    
     END VISUALIZAR_DATOS_CURSO;
 
 ------------
@@ -137,18 +137,18 @@ CREATE OR REPLACE PACKAGE BODY GESTION_CURSO AS
     BEGIN
         V_NUM_CURSO := BUSCAR_CURSO_POR_TITULO(V_TITULO_CURSO);
         SELECT * INTO REG_CURSO FROM CURSOS WHERE NUMCUR = V_NUM_CURSO;
-        DBMS_OUTPUT.PUT_LINE(chr(10) || 'N⁄MERO: ' || REG_CURSO.NUMCUR);
-        DBMS_OUTPUT.PUT_LINE('TÕTULO: ' || REG_CURSO.TITCUR);
+        DBMS_OUTPUT.PUT_LINE(chr(10) || 'N√öMERO: ' || REG_CURSO.NUMCUR);
+        DBMS_OUTPUT.PUT_LINE('T√çTULO: ' || REG_CURSO.TITCUR);
         DBMS_OUTPUT.PUT_LINE('PRECIO: ' || REG_CURSO.PRECUR);
-        DBMS_OUTPUT.PUT_LINE('EDICI”N: ' || REG_CURSO.EDICUR);
+        DBMS_OUTPUT.PUT_LINE('EDICI√ìN: ' || REG_CURSO.EDICUR);
         DBMS_OUTPUT.PUT_LINE('HORAS: ' || REG_CURSO.HORCUR);
         DBMS_OUTPUT.PUT_LINE('FECHA DE INICIO: ' || REG_CURSO.FINCUR);
         DBMS_OUTPUT.PUT_LINE('FECHA DE FINAL: ' || REG_CURSO.FFICUR);
-        DBMS_OUTPUT.PUT_LINE('CR…DITOS: ' || REG_CURSO.CRECUR);
-        DBMS_OUTPUT.PUT_LINE('N⁄MERO PROFESOR: ' || REG_CURSO.NUMPRO);
+        DBMS_OUTPUT.PUT_LINE('CR√âDITOS: ' || REG_CURSO.CRECUR);
+        DBMS_OUTPUT.PUT_LINE('N√öMERO PROFESOR: ' || REG_CURSO.NUMPRO);
         EXCEPTION
             WHEN NO_DATA_FOUND THEN
-                DBMS_OUTPUT.PUT_LINE(chr(10) || 'NO SE ENCONTR” EL CURSO CON EL NOMBRE ' || V_TITULO_CURSO);  
+                DBMS_OUTPUT.PUT_LINE(chr(10) || 'NO SE ENCONTR√ì EL CURSO CON EL NOMBRE ' || V_TITULO_CURSO);  
     END VISUALIZAR_DATOS_CURSO_V2;
 
 ------------
@@ -189,7 +189,7 @@ CREATE OR REPLACE PACKAGE BODY GESTION_CURSO AS
 
 ------------
 
-    FUNCTION BUSCAR_CURSO_POR_TITULO(V_NUM_CURSO CURSOS.TITCUR%TYPE)
+    FUNCTION BUSCAR_CURSO_POR_TITULO(V_TITULO_CURSO CURSOS.TITCUR%TYPE)
     RETURN NUMBER
     IS
         COD CURSOS.NUMCUR%TYPE;
